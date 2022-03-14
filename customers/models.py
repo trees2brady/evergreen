@@ -10,3 +10,5 @@ class Customer(models.Model):
     address = models.CharField(max_length=100, default=u"")
     mobile = models.CharField(max_length=20, null=True, blank=True)
 
+    def __str__(self):
+        return self.last_name
