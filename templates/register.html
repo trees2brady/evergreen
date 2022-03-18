@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %} Register {% endblock %}
+{% block content %}
+<h1>This is register page!</h1>
+<form action="{% url 'register' %}" method="post">
+    <div><p>Email:</p><input id="email"/></div>
+    <p>Password:</p><input id="pwd1" type="password"/>
+    <p>Password:</p><input id="pwd2" type="password"/>
+     <div><p>First Name:</p><input id="first_name"/></div>
+     <div><p>Last Name:</p><input id="last_name"/></div>
+     <div><p>Address:</p><input id="address"/></div>
+    <div><p>Mobile:</p><input id="mobile"/></div>
+    <input type="submit" value="Submit"/>
+    {% csrf_token %}
+</form>
+{% endblock %}
