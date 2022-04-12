@@ -5,10 +5,18 @@
 </head>
 
 <body>
-    <div>
-        <a href="{% url 'login' %}"> Login</a>
-        <a href="{% url 'register' %}"> Register</a>
-    </div>
+        {% if request.user.is_authenticated %}
+            <li><a id="username" onclick="layer.tips($('#user_btn_').html(),this,{tips: 3})">{{ request.user.username }}</a>
+{#                $('#user_btn_').html()#}
+            <div id="user_btn_">
+                <a class="personcenter fl" href="">Personal Center</a>
+                <a class="fr" href="{% url 'logout' %}">Log out</a>
+            </div>
+            </li>
+        {% else %}
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="{% url 'register' %}">Register</a></li>
+        {% endif %}
     <div id="sidebar">
         {% block sidebar %}
         <ul>
@@ -19,6 +27,26 @@
     </div>
 
     <div id="content">
+                <script type="text/javascript">
+            function parent_login() {
+                parent.$("#btn_login").click();
+                layer.open({
+                    type: 1,
+                    title: false,
+                    scrollbar: false,
+                    shadeClose:true,
+                    content: $('#login_page'),
+                    area: ['365px','396px'],
+                    resize: false
+                });
+            }
+            {% if msg %}
+                alert('{{ msg }}');
+            {% endif %}
+            {% if register_success %}
+                parent.layer.closeAll();
+            {% endif %}
+        </script>
         {% block content %}{% endblock %}
     </div>
 </body>

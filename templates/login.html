@@ -3,8 +3,10 @@
 {% block content %}
 <h1>This is login page</h1>
 <form action="{% url 'login' %}" method="post">
-    <div><p>Email:</p><input id="email"/></div>
-    <p>Password:</p><input id="pwd" type="password"/>
+        <ul>
+            <li><label>Username: </label><input type="text" id="username" name="username"></li>
+            <li><label>Password: </label><input type="password" id="password" name="password"></li>
+        </ul>
     <input type="submit" value="Submit"/>
     {% csrf_token %}
 </form>
