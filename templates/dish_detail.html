@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %} {{dish.dish_name}}{% endblock %}
+{% block content %}
+{% load static %}
+<h1>{{dish.dish_name}}</h1>
+<a href=""><h1>Add to cart</h1></a>
+<img src="{% static 'img/default.jpg' %}">
+<h3>{{dish.quantity}}</h3>
+<h3>{{dish.description}}</h3>
+{% endblock %}

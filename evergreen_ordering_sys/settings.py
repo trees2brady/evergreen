@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'orders',
     'dishes',
     'order_details',
+    'reserve',
 ]
 
 MIDDLEWARE = [
@@ -131,3 +132,4 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.AllowAllUsersModelBackend']
 AUTH_USER_MODEL = 'customers.Customer'
+

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %} Today's Dishes{% endblock %}
+{% block content %}
+{% load static %}
+<h1>Today's Dishes</h1>
+<ul>
+
+    {% for dish in dishes %}
+    <li><a href="{{dish.id}}"> {{dish.dish_name}}, ${{dish.price}}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -7,7 +7,6 @@
 <body>
         {% if request.user.is_authenticated %}
             <li><a id="username" onclick="layer.tips($('#user_btn_').html(),this,{tips: 3})">{{ request.user.username }}</a>
-{#                $('#user_btn_').html()#}
             <div id="user_btn_">
                 <a class="personcenter fl" href="">Personal Center</a>
                 <a class="fr" href="{% url 'logout' %}">Log out</a>
@@ -21,7 +20,8 @@
         {% block sidebar %}
         <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="/blog/">Blog</a></li>
+            <li><a href="/dishes/">Dishes</a></li>
+            <li><a href="/reserve/">Make reservations</a></li>
         </ul>
         {% endblock %}
     </div>
