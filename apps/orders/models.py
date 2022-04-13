@@ -8,6 +8,6 @@ from datetime import datetime
 class Orders(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     dish = models.ForeignKey(Dishes, on_delete=models.CASCADE)
-    total_price = models.DecimalField(max_digits=10, decimal_places=2)
-    start_time = models.DateTimeField(default=datetime.now)
-    finished_time = models.DateTimeField()
+    total_price_of_order = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    create_time = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=20, default="In shopping cart")

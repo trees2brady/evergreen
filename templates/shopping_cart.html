@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %} {{user.username}}'s Shopping Cart{% endblock %}
+{% block content %}
+<h1>{{user.username}}'s Shopping Cart</h1>
+Creating Time: {{order.create_time}}
+<ul>
+    {% for dish in dishes %}
+    <li><a href="/dishes/{{dish.id}}"> {{dish.dish_name}} </a>, ${{dish.price}} quantity: 1</li>
+    {% endfor %}
+</ul>
+Total price:{{order.total_price_of_order}}
+<a href=""><h3>Proceed to checkout</h3></a>
+{% endblock %}

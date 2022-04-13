@@ -1,7 +1,6 @@
-from django.urls import path
-
-from . import views
+from django.urls import path, re_path
+from .views import *
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    re_path(r'shopping_cart', OrderView.as_view(), name='order_view'),
 ]
