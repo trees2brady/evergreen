@@ -34,6 +34,7 @@ class AddToCart(View):
                 new_order.dish = dish
                 new_order.customer = request.user
                 new_order.status = "In shopping cart"
+                new_order.address = request.user.address
                 new_order.save()
             order = Orders.objects.filter(customer_id=customer_id).filter(status="In shopping cart")[0]
             new_order_detail = OrderDetails()

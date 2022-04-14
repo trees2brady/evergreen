@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'dishes',
     'order_details',
     'reserve',
+    'delivery',
 ]
 
 MIDDLEWARE = [

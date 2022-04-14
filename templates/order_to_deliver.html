@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %} Orders to be delivered{% endblock %}
+{% block content %}
+<h1>Orders to be delivered</h1>
+<ul>
+    {% for order in orders %}
+        <li> Address:{{order.address}}, Order ID:{{order.id}}, Create Time:{{order.create_time}}
+            <form action="{% url 'make_delivery' %}" method="post">
+                <input type="hidden" value="{{order.id}}" name="order_id">
+                <input type="submit" value="Deliver"/>
+                {% csrf_token %}
+            </form>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

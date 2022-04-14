@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %} {{user.username}}'s Transactions{% endblock %}
+{% block content %}
+<h1>{{user.username}}'s Transactions</h1>
+
+<ul>
+    {% for transaction in transactions %}
+    <li> Transaction ID: {{transaction.id}} Create Time: {{transaction.create_time}} Order ID:{{transaction.oder_id}} Status:{{transaction.status}}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

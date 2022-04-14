@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %} {{user.username}}'s Personal Center{% endblock %}
+{% block content %}
+<h1>Become a delivery man</h1>
+<h3>Please complete your information</h3>
+<form action="{% url 'become_deliverymen' %}" method="post">
+        <ul>
+            <li><label>SSN: </label><input type="text" id="ssn" name="ssn"></li>
+            <li><label>Bank Account: </label><input type="text" id="bank_account" name="bank_account"></li>
+        </ul>
+    <input type="submit" value="Submit"/>
+    {% csrf_token %}
+</form>
+{% endblock %}

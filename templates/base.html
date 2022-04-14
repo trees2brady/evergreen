@@ -5,13 +5,21 @@
 </head>
 
 <body>
-        {% if request.user.is_authenticated %}
-            <li><a id="username" onclick="layer.tips($('#user_btn_').html(),this,{tips: 3})">{{ request.user.username }}</a>
-            <div id="user_btn_">
-                <a class="personcenter fl" href="">Personal Center</a>
-                <a class="fr" href="{% url 'logout' %}">Log out</a>
-            </div>
-            </li>
+        {% if request.user.is_authenticated and request.user.is_delivery_man == '1' %}
+                <li>{{ request.user.username }}  Deliveryman
+                <div >
+                    <a  href="/customers/personal_center/">Personal Center</a>
+                    <a  href="{% url 'logout' %}">Log out</a>
+                    <a  href="{% url 'make_delivery' %}">Deliver Orders</a>
+                </div>
+                </li>
+        {% elif request.user.is_authenticated %}
+                <li>{{ request.user.username }}
+                <div >
+                    <a  href="/customers/personal_center/">Personal Center</a>
+                    <a  href="{% url 'logout' %}">Log out</a>
+                </div>
+                </li>
         {% else %}
             <li><a href="{% url 'login' %}">Login</a></li>
             <li><a href="{% url 'register' %}">Register</a></li>
@@ -21,8 +29,9 @@
         <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/dishes/">Dishes</a></li>
-            <li><a href="/reserve/">Make Reservations</a></li>
+            <li><a href="/reserve/">Reservations</a></li>
             <li><a href="/orders/shopping_cart/">Shopping Cart</a></li>
+            <li><a href="{% url 'view_transaction' %}">Transactions</a></li>
         </ul>
         {% endblock %}
     </div>

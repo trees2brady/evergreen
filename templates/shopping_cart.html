@@ -9,5 +9,5 @@ Creating Time: {{order.create_time}}
     {% endfor %}
 </ul>
 Total price:{{order.total_price_of_order}}
-<a href=""><h3>Proceed to checkout</h3></a>
+<a href="{% url 'pay' %}"><h3>Proceed to checkout</h3></a>
 {% endblock %}

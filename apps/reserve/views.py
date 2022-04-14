@@ -10,7 +10,15 @@ from .models import Reservation
 
 class Reserve(View):
     def get(self, request):
-        return render(request, "reserve.html")
+        if request.user.is_authenticated:
+            customer_id = request.user.id
+            reservations = Reservation.objects.filter(customer_id=customer_id)
+            if len(reservations) == 0:
+                return render(request, 'reserve.html', {"msg": "You have no reservation yet! You can make reservations now."})
+            else:
+                return render(request, "reservations.html", {"reservations": reservations})
+        else:
+            return render(request, 'login.html', {"msg": "Please login first!"})
 
     def post(self, request):
         reserve_form = ReserveForm(request.POST)
@@ -32,8 +40,8 @@ class Reserve(View):
                     "msg": "Reserve Successful!"
                 })
             else:
-                return HttpResponse(json.dumps({"status": 'fail', "msg": u"Wrong email or password！"}),
-                                    content_type='application/json')
+                return render(request, "reserve.html", {
+                    "msg": u"Wrong email or password！"})
         else:
-            return HttpResponse(json.dumps({"status": 'fail', "msg": "Illegal input!"}),
-                                content_type='application/json')
+            return render(request, "reserve.html", {
+                "msg": "Illegal input!"})

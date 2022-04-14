@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %} {{user.username}}'s Reservations{% endblock %}
+{% block content %}
+<h1>{{user.username}}'s Reservations</h1>
+Creating Time: {{order.create_time}}
+<ul>
+    {% for reservation in reservations %}
+    <li> {{reservation.creating_time}} , {{reservation.number_of_people}} , {{reservation.reservation_time}} , {{reservation.status]}</li>
+    {% endfor %}
+</ul>
+<a href="/reserve/">Make New Reservations</a>
+{% endblock %}

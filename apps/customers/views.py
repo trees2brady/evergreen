@@ -81,7 +81,6 @@ class RegisterView(View):
                 "msg": "Register Successful!"
             })
         else:
-            print(register_form.errors)
             try:
                 msg = register_form.errors['checkword'][0]
             except:
@@ -90,3 +89,27 @@ class RegisterView(View):
                 "register_form": register_form,
                 "msg": msg,
             })
+
+
+class PersonalCenterView(View):
+    def get(self, request):
+        return render(request, "personal_center.html", {"user": request.user})
+
+
+class BecomeDeliveryMan(View):
+    def get(self, request):
+        return render(request, "become_delivery_men.html")
+
+    def post(self, request):
+        user = request.user
+        delivery_man = Customer.objects.filter(id=user.id).filter(is_delivery_man='1')
+        if len(delivery_man) == 0:
+            user.ssn = request.POST.get("ssn", '')
+            user.bank_account = request.POST.get("bank_account", '')
+            user.is_delivery_man = '1'
+            user.save()
+            msg = "You have registered to be a delivery man!"
+        else:
+            msg = "You are already a deliveryman!"
+        return render(request, "homepage.html", {"msg": msg})
+

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %} Payment{% endblock %}
+{% block content %}
+<h1>Payment</h1>
+Order Create Time: {{order.create_time}}
+<ul>
+    {% for dish in dishes %}
+    <li><a href="/dishes/{{dish.id}}"> {{dish.dish_name}} </a>, ${{dish.price}} quantity: 1</li>
+    {% endfor %}
+</ul>
+Total price:{{order.total_price_of_order}}
+<form action="{% url 'pay' %}" method="post" autocomplete="off">
+    <ul>
+        <li><label>Card Number: </label><input type="text" id="card_number" name="card_number"></li>
+        <li><label>Security Code: </label><input type="text" id="security_code" name="security_code"></li>
+        <li><label>Payment Method: </label>Debit Card<input type="radio" id="payment_method" name="payment_method" checked="True"></li>
+    </ul>
+    <input type="submit" value="Pay Now"/>
+    {% csrf_token %}
+</form>
+{% endblock %}
