@@ -2,12 +2,17 @@
 {% block title %} Login{% endblock %}
 {% block content %}
 <h1>This is login page</h1>
-<form action="{% url 'login' %}" method="post">
-        <ul>
-            <li><label>Username: </label><input type="text" id="username" name="username"></li>
-            <li><label>Password: </label><input type="password" id="password" name="password"></li>
-        </ul>
-    <input type="submit" value="Submit"/>
-    {% csrf_token %}
-</form>
+
+{% if request.user.is_authenticated %}
+    <h1>{{request.user.username}}, You have been logged in!</h1>
+{% else %}
+    <form action="{% url 'login' %}" method="post">
+            <ul>
+                <li><label>Username: </label><input type="text" id="username" name="username"></li>
+                <li><label>Password: </label><input type="password" id="password" name="password"></li>
+            </ul>
+        <input type="submit" value="Submit"/>
+        {% csrf_token %}
+    </form>
+{% endif %}
 {% endblock %}

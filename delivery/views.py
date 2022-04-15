@@ -8,8 +8,6 @@ from django.http import HttpResponse
 from customers.models import Customer
 from django.contrib.auth import authenticate, login, logout
 
-# customer看到my delivery:order id, delivery_men_name, delivery_from time, contact info
-
 
 class DeliveryFromCustomer(View):
     def get(self, request):
@@ -32,7 +30,7 @@ class MakeDelivery(View):  # DeliveryMen make orders into delivery
         return make_delivery.get(request)
 
 
-class DeliveryFromDeliveryMen(View):  # 看到自己delivery transactions 看到payment
+class DeliveryFromDeliveryMen(View):
     def get(self, request):
         pass
 

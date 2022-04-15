@@ -31,17 +31,17 @@ class Reserve(View):
                 number_of_people = request.POST.get("number_of_people", "")
                 reservation_time = request.POST.get("reservation_time", "")
                 new_reservation = Reservation()
-                new_reservation.customer = customer
+                new_reservation.customer = customer[0]
                 new_reservation.number_of_people = number_of_people
                 new_reservation.reservation_time = reservation_time
                 new_reservation.save()
                 return render(request, "reserve.html", {
-                    "register_success": True,
                     "msg": "Reserve Successful!"
                 })
             else:
                 return render(request, "reserve.html", {
                     "msg": u"Wrong email or password！"})
         else:
+            print(reserve_form.errors)
             return render(request, "reserve.html", {
                 "msg": "Illegal input!"})
